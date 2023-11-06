@@ -13,8 +13,8 @@ const char* ssid     = "Pedrobolado";
 const char* password = "zzhv4540";
 
 // Inicializa Bot Telegram
-#define BOTtoken  "6817372912:AAEf0lFYtLvMZ_SjUCgHH2Uw4xmBIUteBIA" 
-#define CHAT_ID  "1931741996"
+#define BOTtoken  "Token bot telegram" 
+#define CHAT_ID  "Chat Id do bot"
 
 WiFiClientSecure client;
 
