@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: image-set("../fundo.jpeg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    #container {
+        background-color: #16ade9;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgb(0, 183, 255);
+        padding: 20px;
+        text-align: center;
+    }
+    h1 {
+        font-size: 35px;
+        color: rgb(3, 2, 24);
+    }
+    input {
+        font-size: 25px; 
+        margin: 5px;
+    }
+    button {
+        font-size: 25px;
+        margin: 10px;
+    }
+
+    </style>
+    <script src="../js/login.js"></script>
+</head>
+<body>
+    <div id="container">
+    <form id="formulario2">
+        <h1>Insira sua conta aqui:</h1>
+        <input type="text" name="email" placeholder="Email" /> <br>
+        <input type="password" name="senha" placeholder="Senha" /> <br>
+    </form>
+        <button type="button" onclick="realizarLogin()">Login</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grafico de Pizza e Tabela</title>
+    <!-- Inclua a biblioteca Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Dados Gerais</h1>
+
+    <!-- Gráfico de Pizza -->
+    <canvas id="graficoPizza" width="50" height="50"></canvas>
+
+    <!-- Tabela -->
+    <table border="2">
+        <tr>
+            <th>Peso</th>
+            <th>Escrita</th>
+            <th>Data</th>
+    </table>
+
+    <script>
+        // Dados para o gráfico de pizza
+        var dadosGraficoPizza = {
+            labels: ['Alimentacao correta', 'Alimentacao nao correta'],
+            datasets: [{
+                data: [1, 5], // Número de "Sim" e "Não"
+                backgroundColor: ['blue', 'red'] // Cores das fatias
+            }]
+        };
+
+        // Configurações do gráfico de pizza
+        var configuracaoGraficoPizza = {
+            responsive: true
+        };
+
+        // Criação do gráfico de pizza no elemento "graficoPizza"
+        var ctx = document.getElementById('graficoPizza').getContext('2d');
+        var graficoPizza = new Chart(ctx, {
+            type: 'pie',
+            data: dadosGraficoPizza,
+            options: configuracaoGraficoPizza
+        });
+    </script>
+</body>
+</html>

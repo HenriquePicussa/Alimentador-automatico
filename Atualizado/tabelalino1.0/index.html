@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+   <script src="js/login.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: image-set("fundo.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #container {
+            background-color: #16ade9;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgb(0, 183, 255);
+            padding: 20px;
+            text-align: center;
+            font-weight: lighter;
+        }
+        h1 {
+            font-size: 35px;
+            color: rgb(3, 2, 24);
+        }
+        input {
+            font-size: 20px; 
+            margin: 5px;
+        }
+        button, a {
+            font-size: 25px;
+            margin: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+    <form id="formulario">
+        <h1> Bem-Vindo(a)</h1>	
+        <input type="text" name="nome" placeholder="Nome"/> <br>
+        <input type="text" name="email" placeholder="Email"/> <br>
+        <input type="password" name="senha" placeholder="Senha"/> <br>
+        <button type="button" onclick="gravar()">Cadastrar</button>
+    </form>
+        <a href='paginas/login.html'><button>login</button></a>
+    </div>
+    
+</body>
+</html>
