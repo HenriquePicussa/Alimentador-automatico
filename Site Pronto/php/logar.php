@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $senha = $_POST['senha'];
 
     // Conecte-se ao seu banco de dados. Substitua as informações do banco de dados apropriadas.
-    $con= mysqli_connect('localhost:3306', 'root', 'He@@2037', 'alimentador');
+    $con= mysqli_connect('localhost', '', '', '');
 
     // Verifique a conexão com o banco de dados
     if (!$con) {
