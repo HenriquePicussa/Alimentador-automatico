@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Verifique se os valores não estão vazios
     if (!empty($pesobal) && !empty($peso)) {
-        $con = mysqli_connect('localhost', 'root', 'He@@2037', 'alimentador');
+        $con = mysqli_connect('', '', '', '');
 
         // Use prepared statements para evitar injeção de SQL
         $query = "INSERT INTO peso (pesobal, peso) VALUES (?, ?)";
