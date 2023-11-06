@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registro e Gráfico</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h2>Registro de Dados e Gráfico</h2>
+  <form id="dataForm">
+    Valor 1: <input type="text" id="value1" name="value1"><br>
+    Valor 2: <input type="text" id="value2" name="value2"><br>
+    <input type="submit" value="Enviar">
+  </form>
+
+  <div style="width: 80%; margin: auto;">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script>
+    document.getElementById("dataForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const value1 = document.getElementById("value1").value;
+      const value2 = document.getElementById("value2").value;
+
+      sendDataToServer(value1, value2);
+    });
+
+    function sendDataToServer(value1, value2) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "store_data.php", true);
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log(xhr.responseText);
+          updateChart();
+        }
+      };
+
+      const data = "value1=" + encodeURIComponent(value1) + "&value2=" + encodeURIComponent(value2);
+      xhr.send(data);
+    }
+
+    function updateChart() {
+      // Recupere os dados do servidor e atualize o gráfico usando a biblioteca Chart.js
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "get_data.php", true);
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          const data = JSON.parse(xhr.responseText);
+          createChart(data);
+        }
+      };
+
+      xhr.send();
+    }
+
+    function createChart(data) {
+      const labels = data.map(entry => entry.label);
+      const values = data.map(entry => entry.value);
+
+      const ctx = document.getElementById("myChart").getContext("2d");
+      const myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Valores",
+            data: values,
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderColor: "rgba(75, 192, 192, 1)",
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $value1 = $_POST["value1"];
+    $value2 = $_POST["value2"];
+
+    // Conecte-se ao seu banco de dados (exemplo usando mysqli)
+    $servername = "localhost";
+    $username = "seu_usuario";
+    $password = "sua_senha";
+    $dbname = "seu_banco_de_dados";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Conexão falhou: " . $conn->connect_error);
+    }
+
+    $sql = "INSERT INTO tabela_dados (value1, value2) VALUES ('$value1', '$value2')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Dados armazenados com sucesso!";
+    } else {
+        echo "Erro ao armazenar dados: " . $conn->error;
+    }
+
+    $conn->close();
+}
+?>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registro de Dados</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin: auto;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Registro de Dados</h2>
+  <form id="dataForm">
+    Valor 1: <input type="text" id="value1" name="value1"><br>
+    Valor 2: <input type="text" id="value2" name="value2"><br>
+    <input type="submit" value="Adicionar">
+  </form>
+
+  <table id="dataTable">
+    <tr>
+      <th>Valor 1</th>
+      <th>Valor 2</th>
+    </tr>
+  </table>
+
+  <script>
+    document.getElementById("dataForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const value1 = document.getElementById("value1").value;
+  const value2 = document.getElementById("value2").value;
+
+  addDataToTable(value1, value2);
+  clearForm();
+});
+
+function addDataToTable(value1, value2) {
+  const table = document.getElementById("dataTable");
+  const newRow = table.insertRow(table.rows.length);
+
+  const cell1 = newRow.insertCell(0);
+  const cell2 = newRow.insertCell(1);
+
+  cell1.innerHTML = value1;
+  cell2.innerHTML = value2;
+}
+
+function clearForm() {
+  document.getElementById("value1").value = "";
+  document.getElementById("value2").value = "";
+}
+
+  </script>
+</body>
+</html>
