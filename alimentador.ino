@@ -1,8 +1,8 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 
-const char* ssid = "picussa10";
-const char* password = "muitomacho";
+const char* ssid = "Nome Wifi";
+const char* password = "Senha";
 
 void setup() {
   Serial.begin(115200);
